@@ -1,0 +1,96 @@
+
+-----create data base
+create database hsbcdb
+
+----create a table store product
+id, name, qty,price,type,mfgdate,cid
+create table producthsbc(
+pid int,
+pname varchar(20) not null,
+qty int check(qty>0),
+price decimal(9,2),
+type varchar(20),
+mfgdate date,
+cid int,
+primary key(pid),
+constraint fk_cid foreign key(cid) references category(catid),
+
+)
+
+------- create table category
+catid,cname,desc
+create table category
+(catid int primary key,
+cname varchar(20),
+descrition varchar(20))
+
+---add data in category
+
+insert into category values(1,'chips','very crispy');
+insert into category values(2,'biscuits','thoda aur do');
+insert into category values(3,'snacks','yummy');
+
+
+-----add data in product table
+
+
+insert into producthsbc values(10,'lays',23,40.00,'perishable','2021-09-01',1);
+insert into producthsbc values(11,'nachos',20,120.00,'perishable','2021-08-01',1);
+insert into producthsbc values(12,'Marie',20,20.00,'perishable','2021-09-01',2);
+insert into producthsbc values(13,'maggi',50,40.00,'perishable','2021-07-01',3);
+insert into producthsbc(pid,pname,qty) values(10,'50-50',23);
+
+
+----to view the data
+select * from producthsbc;
+selct * from category;
+
+select pid,pname,qty from producthsbc where qty>10
+
+select pid,pname,qty from producthsbc where cid in (1,2);
+
+----update data
+update producthsbc
+set qty=qty+10,price=price+12
+where cid=1;
+
+-----delete data
+delete from producthsbc where pid=23;
+
+
+to connect to database 
+Driver
+types of database driver
+
+Type I ----  jdbc-odbc bridge
+Type II ------need to install library on native m/c
+Type III ------ to connect to databse on network
+Type IV ------ JDBC API --- jar ---- mysql
+
+
+To do the connectivity
+1. register driver
+  DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver())
+  Class.forName("com.mysql.cj.jdbc.Driver")
+  
+2. Connect with the database
+   url=<driver name>//<ip address>:<portnumber>//<database name> 
+        jdbc:mysql//@localhost:3306/hsbc
+	usename=root
+	password=root123
+	
+	Connection con=DriverManager.getConnection(url,username,password);
+3. execute the query
+----- create the statement
+1. createStatement
+    Statement st=con.createstatement();
+	ResultSet rs=st.executeQuery("select * from product");
+    st.executeQuery("select * from category");
+	int num =st.executeUpdate("insert into ........");
+2. PreparedStatement ps=con.preparestatement("inser into catgory value(?,?,?))
+   ps.setInt(1,23);
+   ps.setString(2,"lksdhfldh");
+   ps.setString(3,"hhah");
+
+
+
