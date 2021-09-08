@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+div.myclass {
+   background-color:blue;
+   color:white;
+   border:2px solid yellow;
+   border-radius:6px;
+   box-shadow:2px 2px 2px red;
+   width:200px;
+   height:300px;
+   float:left
+}
+div.c1{
+	display:block
+}
