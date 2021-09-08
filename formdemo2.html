@@ -3,77 +3,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script>
-   // validate name
-   validatename=function(){
-	   var name=document.getElementById("nm").value;
-	    var ptag=document.getElementById("nmerr");
-	    if(name.trim().length>0){
-	    	ptag.innerHTML="";
-	    	//alert(name);
-	    	return true;
-	    }
-	    ptag.innerHTML="name cannot be blank";
-	    //alert("name cannot be blank");
-	    return false;
-   }
-   //validatepassword
-   function validatepassword(){
-	   var pass=document.getElementById("pass").value;
-	   var cpass=document.getElementById("cpass").value;
-	   if(pass===cpass){
-		   document.getElementById("passerr").innerHTML="";
-		   return true;
-	   }
-	   document.getElementById("passerr").innerHTML="password and confirm password doesnot match";
-	   return false;
-   }
-   validatehobbies=()=>{
-	   var hobbies=document.getElementsByName("hb");
-	   var cnt=0;
-	   for(var i=0;i<hobbies.length;i++){
-		   if(hobbies[i].checked){
-			   cnt++;
-			   if(cnt>=2){
-				   document.getElementById("hberr").innerHTML="";
-				   return true;
-			   }
-		   }
-	   }
-	   document.getElementById("hberr").innerHTML="select minimum 2 hobbies";
-	   return false;
-	   /*for(hb of hobbies){
-		   alert(hb.value);
-		   
-	   }*/
-	   
-	   
-   }
-   //vlaidation for all fields
-   function validateData(){
-	   var nmflag=validatename();
-	   var passflag=validatepassword();
-	   var hbflag=validatehobbies();
-	   if(nmflag && passflag && hbflag){
-		   return true;
-	   }
-	   return false;
-   }
-  /* validateData()=function{
-	   
-	   
-   }
-   validateData=()=>{
-	   
-	   
-   }*/
-
-</script>
+<script src="myscript.js">
+ </script>
+ <script>
+ 
+ </script>
 </head>
 <body>
-<form  method="post" onsubmit="return validateData()">
+
+<!-- <form  method="post" onsubmit="return validateData()"> -->
+<form method="post" >
 <table>
-  <tr><td>name: </td><td><input type="text" name="nm" id="nm" placeholder="enter name" autofocus></td><td><p id="nmerr"></p></td></tr>
+  <tr><td>name: </td><td><input type="text" name="nm" id="nm" placeholder="enter name" autofocus><label style="color:red">*</label></td><td><p id="nmerr"></p></td></tr>
   <tr><td>Mobile :</td><td><input type="text" name="mob" id="mob"></td><td></td></tr>
   <tr><td>password</td><td><input type="password" name="pass" id="pass"></td><td></td></tr>
   <tr><td>confirm password </td><td><input type="password" name="cpass" id="cpass"></td><td><p id="passerr"></p></td></tr>
@@ -85,7 +26,7 @@
                  <option value="Msc">MSc</option>
            </select></td><td></td></tr>
   <tr><td>
-  Hobbies : </td><td><input type="checkbox" name="hb" id="hb1" value="reading"><label for="hb1"> Reading<lable>
+  Hobbies : </td><td><input type="checkbox" name="hb" id="hb1" value="reading"><label for="hb1"> Reading</label>
   <input type="checkbox" name="hb" id="hb2" value="Biking" ><label for="hb2"> Biking<lable>
   <input type="checkbox" name="hb" id="hb3" value="Dancing"><label for="hb3"> Dancing<lable>
   <input type="checkbox" name="hb" id="hb4" value="Sleeping" checked><label for="hb4"> Sleeping<lable>
@@ -98,8 +39,12 @@
   </td><td></td></tr>
   </table>
   <!--  <input type="button" name="btn" value="Submit">-->
-  <button type="submit" name="btn" value="submit">click me to submit data</button>
+  <button type="button" name="btn" value="submit" onclick="validateData()">click me to submit data</button>
   <button type="reset" name="btn" value="clear">Click me</button>
 </form>
+<div id="mydata">
+Display details:
+</div>
+
 </body>
 </html>
