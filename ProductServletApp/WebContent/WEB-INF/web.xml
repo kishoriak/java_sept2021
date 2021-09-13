@@ -8,6 +8,7 @@
   <servlet>
      <servlet-name>login</servlet-name>
      <servlet-class>com.demo.servlet.LoginServlet</servlet-class>
+     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
       <servlet-name>login</servlet-name>
@@ -16,6 +17,7 @@
   <servlet>
     <servlet-name>addition</servlet-name>
     <servlet-class>com.demo.servlet.AdditionServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
      <servlet-name>addition</servlet-name>

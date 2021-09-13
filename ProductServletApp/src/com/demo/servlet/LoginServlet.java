@@ -9,14 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.demo.beans.User;
+import com.demo.service.LoginService;
+import com.demo.service.LoginServiceImpl;
+
 public class LoginServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		PrintWriter out=response.getWriter();
 		String uname=request.getParameter("uname");
 		String pass=request.getParameter("pass");
-		if(uname.equals("admin") && pass.equals("admin")){
-			RequestDispatcher rd=request.getRequestDispatcher("addition.html");
+		LoginService lservice=new LoginServiceImpl();
+		User user=lservice.validateUser(uname,pass);
+		
+		if(user!=null){
+			RequestDispatcher rd=request.getRequestDispatcher("getcategory");
 			rd.forward(request, response);
 		}
 		else {
